@@ -1,4 +1,5 @@
 import java.util.*;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * Задание 2. (*)
@@ -32,11 +33,13 @@ public class Shop {
      * @param size Кол-во продуктов, которое необходимо добавить
      */
     public static void addInListProduct(List list, int size){
+        assert size > 0 : "При добавлении продуктов в список, кол-во должно быть больше 0";
         for (int i = 0; i < size; i++) {
             Random rand = new Random();
             int prise = rand.nextInt(20, 200);
-            list.add(new Product("Product " + (i+1), prise));
+            list.add(new Product("Product " + (i + 1), prise));
         }
+        assert size == list.size() : "Размер списка не совпадает";
     }
 
     /**
@@ -48,31 +51,36 @@ public class Shop {
             System.out.println(prod.toString());
         }
     }
-
     /**
      * Метод сортировки списка продуктов
      * @param list Список продуктов для сортировки
      */
     public static void sortProductsByPrice(List list){
+        assert list.size() > 0 : "Список пустой, сортировка не требуется";
         Collections.sort(list, new Comparator<Product>() {
             public int compare(Product p1, Product p2) {
                 return p2.price - p1.price;
             }
         });
+        for (int i = 1; i < list.size(); i++) {
+            assert ((Product) list.get(i - 1)).price > ((Product) list.get(i)).price : "Сортировка не верна";
+        }
     }
-
     /**
      * Метод извлечения самого дорого продукта из списка
      * @param list Список с продуктами
      * @return Возвращает продукт у которого самая высокая цена
      */
     public static Product getMostExpensiveProduct(List list) {
+        assert list.size() > 0 : "Список пустой, выбирать не из чего";
         Product findProduct = (Product) list.get(0);
         for (int i = 0; i < list.size(); i++) {
             if (findProduct.price < ((Product) list.get(i)).price) {
                 findProduct = (Product) list.get(i);
             }
+            assert findProduct.price >= ((Product) list.get(i)).price : "Есть продукты и подороже...";
         }
         return findProduct;
+
     }
 }

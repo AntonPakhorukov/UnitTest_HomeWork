@@ -11,7 +11,7 @@ public class Calculator {
          * Не забудьте написать тесты для проверки этого поведения.
          */
         double purchaseAmount = 150;
-        int discountAmount = 30;
+        int discountAmount = 1000;
         System.out.printf("Цена покупки со скидкой = %.2f\n", calculateDiscount(purchaseAmount, discountAmount));
     }
     /**+
