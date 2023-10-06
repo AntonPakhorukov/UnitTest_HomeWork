@@ -13,11 +13,11 @@ public class Main {
             repos.data.get(i).authenticate("user" + i, "password" + i);
         }
         System.out.println("Репозиторий всех пользователей:");
+        repos.data.get(1).setAdmin(true);
+        repos.data.get(3).setAdmin(true);
         for (User user : repos.data) {
             System.out.println(user);
         }
-        repos.data.get(1).setAdmin(true);
-        repos.data.get(3).setAdmin(true);
         System.out.println("Репозиторий админов:");
         repos.logOut();
         for (User user : repos.data) {

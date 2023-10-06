@@ -19,15 +19,12 @@ public class UserRepository {
         }
         return false;
     }
-    public List<User> logOut() {
-        List<User> repoAdmin = new ArrayList<>();
+    public void logOut() {
         for (User user : data) {
-            if(user.isAdmin()) {
-                repoAdmin.add(user);
+            if(!user.isAdmin()) {
+                user.isAuthenticate = false;
             }
         }
-        this.data = repoAdmin;
-        return this.data;
     }
     public int size(){
         return data.size();

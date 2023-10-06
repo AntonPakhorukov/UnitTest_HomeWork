@@ -40,6 +40,12 @@ public class MainTest {
         repo.data.get(1).setAdmin(true);
         repo.data.get(3).setAdmin(true);
         repo.logOut();
-        assertEquals(2, repo.size());
+        assertFalse(repo.data.get(0).isAuthenticate);
+        assertTrue(repo.data.get(1).isAuthenticate);
+        assertFalse(repo.data.get(2).isAuthenticate);
+        assertTrue(repo.data.get(3).isAuthenticate);
+        assertFalse(repo.data.get(4).isAuthenticate);
+        assertFalse(repo.data.get(5).isAuthenticate);
+
     }
 }
