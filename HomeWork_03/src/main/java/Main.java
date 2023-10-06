@@ -1,4 +1,30 @@
 public class Main {
+    public static void main(String[] args) {
+        /**
+         * Добавьте функцию в класс UserRepository, которая разлогинивает
+         * всех пользователей, кроме администраторов. Для этого,
+         * вам потребуется расширить класс User новым свойством,
+         * указывающим, обладает ли пользователь админскими правами.
+         * Протестируйте данную функцию.
+         */
+        UserRepository repos = new UserRepository();
+        for (int i = 0; i < 6; i++) {
+            repos.addUser(new User("user" + i, "password" + i, false));
+            repos.data.get(i).authenticate("user" + i, "password" + i);
+        }
+        System.out.println("Репозиторий всех пользователей:");
+        for (User user : repos.data) {
+            System.out.println(user);
+        }
+        repos.data.get(1).setAdmin(true);
+        repos.data.get(3).setAdmin(true);
+        System.out.println("Репозиторий админов:");
+        repos.logOut();
+        for (User user : repos.data) {
+            System.out.println(user);
+        }
+
+    }
     /**
      * Задание 1. Напишите тесты, покрывающие на 100% метод evenOddNumber,
      * который проверяет, является ли переданное число четным
