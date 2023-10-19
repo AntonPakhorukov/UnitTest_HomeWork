@@ -35,7 +35,7 @@ public class View {
     private void exit(int inputNumberMenu) {
         if (inputNumberMenu == 2) {
             System.out.println("Вы вышли");
-            System.exit(inputNumberMenu);
+//            System.exit(inputNumberMenu);
         }
     }
 }
