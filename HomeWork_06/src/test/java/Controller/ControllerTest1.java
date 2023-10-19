@@ -2,38 +2,45 @@ package Controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ControllerTest {
+class ControllerTest1 {
     Controller controller;
     @BeforeEach
-    void testInit(){
+    void testInit() {
         controller = new Controller();
     }
-
     @Test
-    void inputNumber() {
+    void testInputNumber() {
         controller.inputNumber(5);
         assertEquals(5, controller.getList().get(0));
-    }
 
+    }
+    @ParameterizedTest
+    @ValueSource(ints = {5, 8 ,9})
+    void testInputTestAnyNumbers(int i){
+        controller.inputNumber(i);
+        assertEquals(i, controller.getList().get(0));
+    }
     @Test
-    void getList() {
+    void testGetList() {
         int[] test = new int[] {3, 5, 6};
         fillList(test, controller);
         assertEquals("[3, 5, 6]", controller.getList().toString());
     }
 
     @Test
-    void getSumList() {
+    void testGetSumList() {
         int[] test = new int[] {1, 2, 3, 4 ,5};
         fillList(test, controller);
         assertEquals(3, controller.getSumList());
     }
 
     @Test
-    void compareList() {
+    void testCompareList() {
         Controller controller1 = new Controller();
         int[] testArray1 = new int[] {3, 5, 7, 9};
         fillList(testArray1, controller1);
